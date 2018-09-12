@@ -6,15 +6,15 @@
 
 	<!-- Update Advertisement Template -->
 	<div id="update_con">
-		<form name="userForm">
+		<form name="userForm" ng-controller="updateDoc">
 			<!-- Job Ad Information Card -->
 			<md-card id="jobAd">
 				<md-card-title>
 					<md-card-title-text>
-						<span class="md-headline">Job Ad Information</span>       
+						<span class="md-headline">Job Ad Information ID => {{displayDoc.data._id}}</span>       
 					</md-card-title-text>
 				</md-card-title>  
-				<md-card-content ng-controller="populateJobAds">
+				<md-card-content >
 					<div layout="column">
 						<!-- Ad Title -->
 						<md-input-container>
@@ -29,11 +29,10 @@
 						<!-- Category -->
 						<md-input-container ng-cloak>
 							<label>Category</label>
-							<md-select ng-model="cat" ng-value="{{displayDoc.data.category}}" placeholder="Category">
-
+							<md-select ng-model="cat" placeholder="Category">
 								<!-- Selected Doc Category -->
 								<md-optgroup>
-									<md-option ng-value="{{displayDoc.data.category}}" aria-label selected>{{displayDoc.data.category}}</md-option>
+									<!-- <md-option ng-value="{{displayDoc.data.category}}" selected>{{displayDoc.data.category}}</md-option> -->
 								</md-optgroup>
 
 								<md-optgroup label="Account & Bookkeeping">
@@ -93,8 +92,8 @@
 									<md-option ng-value="{{displayDoc.data.classification}}" selected>{{displayDoc.data.classification}}
 									</md-option>
 
-								</md-optgroup>
 								<md-option ng-value="class.name" ng-repeat="class in jobClass">{{class.name}}</md-option>
+								</md-optgroup>
 							</md-select>
 						</md-input-container>
 						<!-- Outsourcing Model -->
@@ -102,16 +101,17 @@
 							<label>Outsourcing Model</label>
 							<md-select ng-model="O_model">
 
-								<md-option ng-value="{{displayDoc.data.out_sourcing_model}}" aria-label>{{displayDoc.data.out_sourcing_model}}</md-option>
+								<!-- <md-option ng-value="{{displayDoc.data.out_sourcing_model}}" selected>{{displayDoc.data.out_sourcing_model}}</md-option> -->
 
-								<md-option ng-value="O_model.name" ng-repeat="O_model in OM">{{O_model.name}}</md-option>
+
+								<md-option ng-value="O_model.name" ng-repeat="O_model in OModel">{{O_model.name}}</md-option>
 							</md-select>	
 						</md-input-container>
 						<!-- Company -->
 						<md-input-container>
 							<label>Company</label>
 							<md-select ng-model="comp">
-								<!-- <md-option ng-value="{{displayDoc.data.company}}">{{displayDoc.data.company}}</md-option> -->
+								<md-option ng-value="{{displayDoc.data.company}}" selected>{{displayDoc.data.company}}</md-option>
 								<md-option ng-value="comp.name" ng-repeat="comp in jobComp">{{comp.name}}</md-option>
 							</md-select>
 						</md-input-container>
@@ -140,13 +140,76 @@
 				</md-card-content>
 			</md-card>
 
+			<!-- Job Order Details Card -->
+			<md-card id="reqAd">
+				<md-card-title>
+					<md-card-title-text layout-align="center center">
+						<span class="md-headline">Job Order Details</span>
+					</md-card-title-text>
+				</md-card-title>
+				<md-card-content>
+					<div layout="column">
+
+						<!-- No. of Staff -->
+						<md-input-container>
+							<label>No. of Staff</label>
+							<input type="number" name="jobPosition" ng-model="quantity" ng-value="{{displayDoc.data.quantity}}">
+						</md-input-container>
+
+						<!-- Level -->
+						<md-input-container>
+							<label>Level</label>
+							<md-select ng-model="JO_level" >
+								<md-option ng-value="{{displayDoc.data.level}}" selected>{{displayDoc.data.level}}</md-option>
+								<md-option ng-value="level.name" ng-repeat="level in job_order_level">{{level.name}}</md-option>
+							</md-select>
+						</md-input-container>
+
+						<!-- Working Status -->
+						<md-input-container>
+							<label>Working Status</label>
+							<md-select ng-model="JO_work_stat" >
+								<!-- <md-option ng-value="{{displayDoc.data.working_status}}" selected>{{displayDoc.data.working_status}}</md-option> -->
+								<md-option ng-value="wStat.name" ng-repeat="wStat in work_status">{{wStat.name}}</md-option>
+							</md-select>
+						</md-input-container>
+
+						<!-- TimeZone -->
+						<md-input-container>
+							<label>TimeZone</label>
+							<md-select ng-model="timezone" >
+								<md-option ng-value="{{displayDoc.data.working_time_zone}}" selected>{{displayDoc.data.working_time_zone}}</md-option>
+								<md-option ng-value="TimeZ.name" ng-repeat="TimeZ in working_time_zone">{{TimeZ.name}}</md-option>
+							</md-select>
+						</md-input-container>
+
+						<!-- Working Start Time -->
+						<md-input-container>
+							<label>Work Starts at</label>
+							<md-select ng-model="work_start" >
+								<md-option ng-value="{{displayDoc.data.working_start_time}}" selected>{{displayDoc.data.working_start_time}}</md-option>
+								<md-option ng-value="wStart.name" ng-repeat="wStart in working_start_time">{{wStart.name}}</md-option>
+							</md-select>
+						</md-input-container>
+
+						<!-- Working End Time -->
+						<md-input-container>
+							<label>Work Ends at</label>
+							<md-select ng-model="work_end" >
+								<md-option ng-value="{{displayDoc.data.working_end_time}}" selected>{{displayDoc.data.working_end_time}}</md-option>
+								<md-option ng-value="wEnd.name" ng-repeat="wEnd in working_end_time">{{wEnd.name}}</md-option>
+							</md-select>
+						</md-input-container>
+					</div>
+				</md-card>
+
 			<!-- Requirements Card -->
-			<md-card id="reqAd" ng-controller="reqAd">
+			<md-card id="reqAd" >
 				<md-card-title>
 					<md-card-title-text layout-align=" center">
 						<span class="md-headline">Requirements</span>
 					</md-card-title-text>
-					<md-button class="md-raised" ng-click="addNewColumn()"><i class="far fa-plus-square"></i>Add Requirement</md-button>
+					<md-button class="md-raised" ng-click="addNewReqColumn()"><i class="far fa-plus-square"></i>Add Requirement</md-button>
 				</md-card-title>
 				<md-card-content layout-align="center center" flex>
 
@@ -154,51 +217,25 @@
 
 						<!-- Displays Current Requirements -->
 						<div ng-repeat="dispReq in displayDoc.data.required_skills" layout="row" class="disCurReq" layout-align="center center">
-							<md-input-container flex="90" md-no-float class="md-block">
+							<md-input-container flex="100" md-no-float class="md-block">
 								<input type="text" placeholder="Input Requirements" value="{{dispReq}}" />
 							</md-input-container>
 
-							<md-input-container flex="30" md-no-float class="md-block">
-								<label>Please Select Rating</label>
-								<md-select name="favoriteColor" ng-model="favoriteColor"  placeholder="Please Select Rating" layout-align="center center">
-
-									<!-- <md-option ng-repeat="type in reqType" layout-align="center center" value="{{type.name}}" ng-model="reqType.name">{{dispReq}}</md-option> -->
-
-								<md-option ng-value="{{displayDoc.data.company}}">{{displayDoc.data.level}}</md-option>
-
-								</md-select>
-								<div class="errors" ng-messages="myForm.favoriteColor.$error">
-									<div ng-message="required">Required</div>
-								</div>
-							</md-input-container>
-
 							<md-input-container flex="4" class="btn-del">
-								<md-button class="md-fab md-mini md-danger" aria-label="Use Android" ng-click="removeColumn($index)">
+								<md-button class="md-fab md-mini md-danger" aria-label="Use Android" ng-click="removeReqColumn($index)">
 									<i class="fas fa-times"></i>
 								</md-button>
 							</md-input-container>
 						</div>
 
 						<!-- Adding New Column -->
-						<div ng-repeat="column in columns" class="addNewReq" layout="row" layout-align="center center">
-							<md-input-container flex="90" md-no-float class="md-block">
+						<div ng-repeat="column in reqColumns" class="addNewReq" layout="row" layout-align="center center">
+							<md-input-container flex="100" md-no-float class="md-block">
 								<input type="text" name="quest" ng-model="quest" placeholder="Input Requirements" />
 							</md-input-container>
 
-							<md-input-container flex="30" md-no-float class="md-block">
-								<label>Please Select Rating</label>
-								<md-select name="favoriteColor" ng-model="favoriteColor" placeholder="Please Select Rating" layout-align="center center">
-
-									<md-option ng-repeat="type in reqType" layout-align="center center" value="{{type.name}}" ng-model="reqType.name">{{type.name}}</md-option>
-
-								</md-select>
-								<div class="errors" ng-messages="myForm.favoriteColor.$error">
-									<div ng-message="required">Required</div>
-								</div>
-							</md-input-container>
-
 							<md-input-container flex="4" class="btn-del">
-								<md-button class="md-fab md-mini md-danger" aria-label="Use Android" ng-click="removeColumn($index)">
+								<md-button class="md-fab md-mini md-danger" aria-label="Use Android" ng-click="removeReqColumn($index)">
 									<i class="fas fa-times"></i>
 								</md-button>
 							</md-input-container>
@@ -209,38 +246,77 @@
 				</md-card-content>
 			</md-card>
 
-			<!-- Responsibilities Card -->
-			<md-card id="resAd" ng-controller="resAd">
+			<!-- Requirements Must Have -->
+			<md-card id="reqAd">
 				<md-card-title>
 					<md-card-title-text layout-align=" center">
-						<span class="md-headline">Responsibilities</span>
+						<span class="md-headline">Requirements Must Have</span>
 					</md-card-title-text>
-					<md-button class="md-raised" ng-click="addNewColumn()"><i class="far fa-plus-square" ></i>Add Responsibility</md-button>
+					<md-button class="md-raised" ng-click="addNewReqMHColumn()"><i class="far fa-plus-square"></i>Add Requirement</md-button>
 				</md-card-title>
-				<md-card-content ng-cloak layout="row" layout-align="center center" layout-padding>
-					<div layout="column" flex>
+				<md-card-content layout-align="center center" flex>
+				<div layout="column" flex>
 
-						<!-- Displays Current Responsibilities -->
-						<div ng-repeat="x in displayDoc.data.duties_and_reponsibilities" class="disCurRes" layout="row" layout-align="center center">
+						<!-- Displays Current Requirements -->
+						<div ng-repeat="dispReq in displayDoc.data.requirement_must_have" layout="row" class="disCurReq" layout-align="center center">
 							<md-input-container flex="100" md-no-float class="md-block">
-								<input type="text" name="quest" placeholder="Input Responsibilities" value="{{x}}" />
+								<input type="text" placeholder="Input Requirements" value="{{dispReq}}" />
 							</md-input-container>
 
 							<md-input-container flex="4" class="btn-del">
-								<md-button class="md-fab md-mini md-danger" aria-label="Use Android" ng-click="removeColumn($index)">
+								<md-button class="md-fab md-mini md-danger" aria-label="Use Android" ng-click="removeReqColumn($index)">
 									<i class="fas fa-times"></i>
-								</md-button>			
+								</md-button>
 							</md-input-container>
 						</div>
 
-						<!-- Adding new Columns -->
-						<div ng-repeat="column in columns" class="AddNewRes" layout="row" layout-align="center center">
+						<!-- Adding New Column -->
+						<div  ng-repeat="column in reqMHColumns" class="addNewReq" ng-model="column.name" layout="row" layout-align="center center">
+						<md-input-container flex="100" md-no-float class="md-block">
+								<input type="text" ng-model="column.name" placeholder="Input Responsibilities" />
+							</md-input-container>
+							<md-input-container flex="4" class="btn-del">
+								<md-button class="md-fab md-mini md-danger" aria-label="Use Android" ng-click="removeReqMHColumn($index)">
+									<i class="fas fa-times"></i>
+								</md-button>							
+							</md-input-container>
+						</div>
+					</div>
+				</md-card-content>
+			</md-card>
+
+
+			<!-- Requirments Good to Have -->
+			<md-card id="reqAd">
+				<md-card-title>
+					<md-card-title-text layout-align=" center">
+						<span class="md-headline">Requirements Good to Have</span>
+					</md-card-title-text>
+					<md-button class="md-raised" ng-click="addNewReqGTHColumn()"><i class="far fa-plus-square"></i>Add Requirement</md-button>
+				</md-card-title>
+				<md-card-content layout-align="center center" flex>
+				<div layout="column" flex>
+
+						<!-- Displays Current Requirements -->
+						<div ng-repeat="dispReq in displayDoc.data.requirement_good_to_have" layout="row" class="disCurReq" layout-align="center center">
 							<md-input-container flex="100" md-no-float class="md-block">
-								<input type="text" name="quest" placeholder="Input Responsibilities" value="{{x}}" />
+								<input type="text" placeholder="Input Requirements" value="{{dispReq}}" />
 							</md-input-container>
 
 							<md-input-container flex="4" class="btn-del">
-								<md-button class="md-fab md-mini md-danger" aria-label="Use Android" ng-click="removeColumn($index)">
+								<md-button class="md-fab md-mini md-danger" aria-label="Use Android" ng-click="removeReqColumn($index)">
+									<i class="fas fa-times"></i>
+								</md-button>
+							</md-input-container>
+						</div>
+
+						<!-- Adding New Column -->
+						<div  ng-repeat="column in reqGTHColumns" class="addNewReq" ng-model="column.name" layout="row" layout-align="center center">
+						<md-input-container flex="100" md-no-float class="md-block">
+								<input type="text" ng-model="column.name" placeholder="Input Responsibilities" />
+							</md-input-container>
+							<md-input-container flex="4" class="btn-del">
+								<md-button class="md-fab md-mini md-danger" aria-label="Use Android" ng-click="removeReqGTHColumn($index)">
 									<i class="fas fa-times"></i>
 								</md-button>							
 							</md-input-container>
@@ -250,8 +326,170 @@
 				</md-card-content>
 			</md-card>
 
+			<!-- Requirement Tasks -->
+			<md-card id="reqAd">
+				<md-card-title>
+					<md-card-title-text layout-align=" center">
+						<span class="md-headline">Requirements Task</span>
+					</md-card-title-text>
+					<md-button class="md-raised" ng-click="addNewReqTaskColumn()"><i class="far fa-plus-square"></i>Add Requirement</md-button>
+				</md-card-title>
+				<md-card-content layout-align="center center" flex>
+				<div layout="column" flex>
+
+						<!-- Displays Current Requirements -->
+						<div ng-repeat="dispReq in displayDoc.data.required_tasks" layout="row" class="disCurReq" layout-align="center center">
+							<md-input-container flex="100" md-no-float class="md-block">
+								<input type="text" placeholder="Input Requirements" value="{{dispReq}}" />
+							</md-input-container>
+
+							<md-input-container flex="4" class="btn-del">
+								<md-button class="md-fab md-mini md-danger" aria-label="Use Android" ng-click="removeReqColumn($index)">
+									<i class="fas fa-times"></i>
+								</md-button>
+							</md-input-container>
+						</div>
+
+						<!-- Adding New Column -->
+						<div  ng-repeat="column in reqTaskColumns" class="addNewReq" ng-model="column.name" layout="row" layout-align="center center">
+						<md-input-container flex="100" md-no-float class="md-block">
+								<input type="text" ng-model="column.name" placeholder="Input Responsibilities" />
+							</md-input-container>
+							<md-input-container flex="4" class="btn-del">
+								<md-button class="md-fab md-mini md-danger" aria-label="Use Android" ng-click="removeReqTaskColumn($index)">
+									<i class="fas fa-times"></i>
+								</md-button>							
+							</md-input-container>
+						</div>
+					</div>
+				</md-card-content>
+			</md-card>
+
+			<!-- Requirement Skills -->
+			<md-card id="reqAd">
+				<md-card-title>
+					<md-card-title-text layout-align=" center">
+						<span class="md-headline">Requirement Skills</span>
+					</md-card-title-text>
+					<md-button class="md-raised" ng-click="addNewReqSkillColumn()"><i class="far fa-plus-square"></i>Add Requirement</md-button>
+				</md-card-title>
+				<md-card-content layout-align="center center" flex>
+				<div layout="column" flex>
+
+						<!-- Displays Current Resquirement Skills -->
+						<div ng-repeat="x in displayDoc.data.required_skills" class="disCurRes" layout="row" layout-align="center center">
+							<md-input-container flex="100" md-no-float class="md-block">
+								<input type="text" name="quest" placeholder="Input Responsibilities" value="{{x}}" />
+							</md-input-container>
+
+							<md-input-container flex="4" class="btn-del">
+								<md-button class="md-fab md-mini md-danger" aria-label="Use Android" ng-click="removeRespColumn($index)">
+									<i class="fas fa-times"></i>
+								</md-button>			
+							</md-input-container>
+						</div>
+
+						<!-- Adding new Columns -->
+						<div  ng-repeat="column in reqSkillColumns" class="addNewReq" ng-model="column.name" layout="row" layout-align="center center">
+						<md-input-container flex="100" md-no-float class="md-block">
+								<input type="text" ng-model="column.name" placeholder="Input Responsibilities" />
+							</md-input-container>
+							<md-input-container flex="4" class="btn-del">
+								<md-button class="md-fab md-mini md-danger" aria-label="Use Android" ng-click="removeReqSkillColumn($index)">
+									<i class="fas fa-times"></i>
+								</md-button>
+							</md-input-container>
+						</div>
+					</div>
+				</md-card-content>
+			</md-card>
+
+
+			<!-- Responsibilities Card -->
+			<md-card id="resAd">
+				<md-card-title>
+					<md-card-title-text layout-align=" center">
+						<span class="md-headline">Responsibilities</span>
+					</md-card-title-text>
+					<md-button class="md-raised" ng-click="addNewRespColumn()"><i class="far fa-plus-square" ></i>Add Responsibility</md-button>
+				</md-card-title>
+				<md-card-content ng-cloak layout="row" layout-align="center center" layout-padding>
+					<div layout="column" flex>
+
+						<!-- Displays Current Responsibilities -->
+						<div ng-repeat="x in displayDoc.data.responsibilities" class="disCurRes" layout="row" layout-align="center center">
+							<md-input-container flex="100" md-no-float class="md-block">
+								<input type="text" name="quest" placeholder="Input Responsibilities" value="{{x}}" />
+							</md-input-container>
+
+							<md-input-container flex="4" class="btn-del">
+								<md-button class="md-fab md-mini md-danger" aria-label="Use Android" ng-click="removeRespColumn($index)">
+									<i class="fas fa-times"></i>
+								</md-button>			
+							</md-input-container>
+						</div>
+
+						<!-- Adding new Columns -->
+						<div ng-repeat="column in respColumns" class="AddNewRes" layout="row" layout-align="center center">
+							<md-input-container flex="100" md-no-float class="md-block">
+								<input type="text" name="quest" placeholder="Input Responsibilities" value="{{x}}" />
+							</md-input-container>
+
+							<md-input-container flex="4" class="btn-del">
+								<md-button class="md-fab md-mini md-danger" aria-label="Use Android" ng-click="removeRespColumn($index)">
+									<i class="fas fa-times"></i>
+								</md-button>							
+							</md-input-container>
+						</div>
+
+					</div>
+				</md-card-content>
+			</md-card>
+
+
+			<!-- Duties & Responsibilities -->
+			<md-card id="resAd">
+				<md-card-title>
+					<md-card-title-text layout-align=" center">
+						<span class="md-headline">Duties & Responsibilities</span>
+					</md-card-title-text>
+					<md-button class="md-raised" ng-click="addNewDutRespColumn()"><i class="far fa-plus-square"></i>Add Requirement</md-button>
+				</md-card-title>
+				<md-card-content layout-align="center center" flex>
+				<div layout="column" flex>
+						
+						<!-- Displays Current Duties & Responsibilities -->
+						<div ng-repeat="x in displayDoc.data.duties_and_reponsibilities" class="disCurRes" layout="row" layout-align="center center">
+							<md-input-container flex="100" md-no-float class="md-block">
+								<input type="text" name="quest" placeholder="Input Responsibilities" value="{{x}}" />
+							</md-input-container>
+
+							<md-input-container flex="4" class="btn-del">
+								<md-button class="md-fab md-mini md-danger" aria-label="Use Android" ng-click="removeRespColumn($index)">
+									<i class="fas fa-times"></i>
+								</md-button>			
+							</md-input-container>
+						</div>
+			
+			
+						<!-- Adding New Columns -->
+						<div  ng-repeat="column in dutRespColumns" class="AddNewRes" ng-model="column.name" layout="row" layout-align="center center">
+							<md-input-container flex="100" md-no-float class="md-block">
+								<input type="text" ng-model="column.name" placeholder="Input Responsibilities" />
+							</md-input-container>
+							<md-input-container flex="4" class="btn-del">
+								<md-button class="md-fab md-mini md-danger" aria-label="Use Android" ng-click="removeDutRespColumn($index)">
+									<i class="fas fa-times"></i>
+								</md-button>							
+							</md-input-container>
+						</div>
+					</div>
+				</md-card-content>
+			</md-card>
+
+
 			<!-- History Card -->
-			<md-card id="hisAd">
+<!-- 			<md-card id="hisAd">
 				<md-card-title>
 					<md-card-title-text  layout-align="center center" >
 						<span class="md-headline">History</span>
@@ -263,7 +501,8 @@
 					</div>
 				</md-card-content>
 			</md-card>
-
+ -->
+		
 			<!-- Action Button -->
 			<md-card-content>
 				<md-card-actions layout="row" layout-align=" center">

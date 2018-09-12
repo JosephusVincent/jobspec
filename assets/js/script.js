@@ -1,3 +1,6 @@
+    // 
+
+
     app = angular.module("newApp", ['ngMaterial','ngRoute','ngAria']).run(function(){
     	console.log("newApp is running!");
     });
@@ -684,17 +687,6 @@
 
     // --- Adding & Removing Columns ---
 
-    //  ------ Requirements -------
-    $scope.reqColumns = [{name:''}];
-    $scope.addNewReqColumn = function() {
-      var newItemNo = $scope.reqColumns.length+1;
-      $scope.reqColumns.push({});
-    };
-    $scope.removeReqColumn = function(index) {
-      // remove the row specified in index
-      $scope.reqColumns.splice( index, 1);
-    };
-    $scope.reqCol = {}
 
     //  ------ Requirements Good to Have -------
     $scope.reqMHColumns = [{name:''}];
@@ -768,6 +760,22 @@
     };
     $scope.respCol = {}
 
+
+
+    //  ------ Requirements -------
+    $scope.reqColumns = [{name:''}];
+    $scope.addNewReqColumn = function() {
+      var newItemNo = $scope.reqColumns.length+1;
+      $scope.reqColumns.push({});
+    };
+    $scope.removeReqColumn = function(index) {
+      // remove the row specified in index
+      $scope.reqColumns.splice( index, 1);
+    };
+    $scope.reqCol = {}
+  
+
+
     // Store Data into an Object
     $scope.data = {}
     $scope.data.manager_info={};
@@ -775,17 +783,6 @@
 
     // Get all Data Function
     $scope.AddDoc = function(){
-
-      //  ------ Responsibilities -------
-      // Add Column Requirements
-      $scope.respCol = $scope.respColumns;
-      // Remove $$hashkey
-      var respon = JSON.stringify( $scope.respCol, function( key, value ) {
-          if( key === "$$hashKey" ) {
-              return undefined;}
-          return value;
-        });
-      $scope.data.responsibi = respon;
 
 
       //  ------ Requirements -------
@@ -843,6 +840,17 @@
         });
       $scope.data.requirements_skills = reqSkill;
 
+      //  ------ Responsibilities -------
+      // Add Column Requirements
+      $scope.respCol = $scope.respColumns;
+      // Remove $$hashkey
+      var respon = JSON.stringify( $scope.respCol, function( key, value ) {
+          if( key === "$$hashKey" ) {
+              return undefined;}
+          return value;
+        });
+      $scope.data.responsibi = respon;
+
       //  ------ Duties & Responsibilities -------
       // Add Column Requirements
       $scope.dutRespCol = $scope.dutRespColumns;
@@ -853,6 +861,7 @@
           return value;
         });
       $scope.data.duties_and_responsibilities = dutRespon;
+
 
       $scope.data.job_title = $scope.job_title;
       $scope.data.leads = $scope.leads;
@@ -1481,8 +1490,109 @@
       $scope.respCol = {}
 
      
+      $scope.updData = {}
+      $scope.updateDocForm = function(){
 
-      });
+
+      //  ------ Responsibilities -------
+      // Add Column Requirements
+      $scope.respCol = $scope.respColumns;
+      // Remove $$hashkey
+      var respon = JSON.stringify( $scope.respCol, function( key, value ) {
+          if( key === "$$hashKey" ) {
+              return undefined;}
+          return value;
+        });
+      $scope.updData.responsibi = respon;
+
+
+      //  ------ Requirements -------
+      // Add Column Requirements
+      $scope.reqCol = $scope.reqColumns;
+      // Remove $$hashkey
+      var req = JSON.stringify( $scope.reqCol, function( key, value ) {
+          if( key === "$$hashKey" ) {
+              return undefined;}
+          return value;
+        });
+      $scope.updData.requirements = req;
+
+      //  ------ Requirements Must Have -------
+      // Add Column Requirements
+      $scope.reqMHCol = $scope.reqMHColumns;
+      // Remove $$hashkey
+      var reqMH = JSON.stringify( $scope.reqMHCol, function( key, value ) {
+          if( key === "$$hashKey" ) {
+              return undefined;}
+          return value;
+        });
+      $scope.updData.requirements_must_have = reqMH;
+
+      //  ------ Requirements Good to Have -------
+      // Add Column Requirements
+      $scope.reqGTHCol = $scope.reqGTHColumns;
+      // Remove $$hashkey
+      var reqGTH = JSON.stringify( $scope.reqGTHCol, function( key, value ) {
+          if( key === "$$hashKey" ) {
+              return undefined;}
+          return value;
+        });
+      $scope.updData.requirements_good_to_have = reqGTH;
+
+      //  ------ Requirements Tasks -------
+      // Add Column Requirements
+      $scope.reqTaskCol = $scope.reqTaskColumns;
+      // Remove $$hashkey
+      var reqTask = JSON.stringify( $scope.reqTaskCol, function( key, value ) {
+          if( key === "$$hashKey" ) {
+              return undefined;}
+          return value;
+        });
+      $scope.updData.requirements_task = reqTask;
+
+      //  ------ Requirement Skills -------
+      // Add Column Requirements
+      $scope.reqSkillCol = $scope.reqSkillColumns;
+      // Remove $$hashkey
+      var reqSkill = JSON.stringify( $scope.reqSkillCol, function( key, value ) {
+          if( key === "$$hashKey" ) {
+              return undefined;}
+          return value;
+        });
+      $scope.updData.requirements_skills = reqSkill;
+
+      //  ------ Duties & Responsibilities -------
+      // Add Column Requirements
+      $scope.dutRespCol = $scope.dutRespColumns;
+      // Remove $$hashkey
+      var dutRespon = JSON.stringify( $scope.dutRespCol, function( key, value ) {
+          if( key === "$$hashKey" ) {
+              return undefined;}
+          return value;
+        });
+      $scope.updData.duties_and_responsibilities = dutRespon;
+
+
+      // $scope.updData.upd_job_title = $scope.upd_job_title;
+      $scope.updData.category = $scope.cat;
+      $scope.updData.classification = $scope.class;
+      $scope.updData.outsource_model = $scope.outSModel;
+      $scope.updData.company = $scope.comp;
+      // $scope.updData.heading = $scope.heading;
+      $scope.updData.job_stat = $scope.jStat;
+      $scope.updData.job_show_stat = $scope.jShowStat;
+      // $scope.updData.quantity = $scope.quantity;
+      $scope.updData.job_order_level = $scope.JO_level;
+      $scope.updData.job_order_work_stat = $scope.JO_work_stat;
+      $scope.updData.job_order_working_timezone = $scope.timezone;
+      $scope.updData.job_order_working_start_time = $scope.work_start;
+      $scope.updData.job_order_working_end_time = $scope.work_end;
+
+      // console.log("updatedDocForm Works !!!");
+      console.log($scope.updData);
+      };
+
+    });
 
     
     // Requirements Card Fields
@@ -1871,7 +1981,7 @@
 //----- Final Working Storing & Adding/Removing  Column ------
 
 // app.controller('SampleCtrl', function($scope) {
-//  $scope.columns = [{name:''}];
+//  $scope.columns = [{name:}];
 
 //   $scope.addNewReqColumn = function() {
 //     var newItemNo = $scope.columns.length+1;
@@ -1885,7 +1995,7 @@
 //   };
 
 //   $scope.dataCol = {}
-//   $scope.addReqColumn = function() {
+//   $scope.getAllData = function() {
 //       $scope.dataCol.requirements = $scope.columns;
       
 //       // Remove $$hashkey
@@ -1898,4 +2008,26 @@
 //       // console.log(json);
 //       console.log(json);
 //   };
+// });
+
+
+
+// app.controller('MainController', function($scope) {
+
+//   $scope.rows = ['Row 1', 'Row 2'];
+  
+//   $scope.counter = 3;
+  
+//   $scope.addRow = function() {
+    
+//     $scope.rows.push('Row ' + $scope.counter);
+//     $scope.counter++;
+//   }
+
+
+//   $scope.getRowData = function() {
+//     $scope.data
+//   }
+
+
 // });

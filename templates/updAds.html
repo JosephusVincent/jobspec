@@ -6,7 +6,7 @@
 
 	<!-- Update Advertisement Template -->
 	<div id="update_con">
-		<form name="userForm" ng-controller="updateDoc">
+		<form name="userForm" ng-submit="updateDocForm()" ng-controller="updateDoc">
 			<!-- Job Ad Information Card -->
 			<md-card id="jobAd">
 				<md-card-title>
@@ -19,9 +19,9 @@
 						<!-- Ad Title -->
 						<md-input-container>
 							<label>Ad Title </label>
-							<input type="text" value="{{displayDoc.data.ad_job_or_title}}">
+							<input type="text" ng-value="{{displayDoc.data.ad_job_or_title}}" ng-model="upd_job_title">
 						</md-input-container>
-						<!-- Leads					 -->
+						<!-- Leads -->
 						<md-input-container>
 							<label>Leads</label>
 							<input type="text" value="{{displayDoc.data.leads_or_client}}" disabled>
@@ -32,7 +32,7 @@
 							<md-select ng-model="cat" placeholder="Category">
 								<!-- Selected Doc Category -->
 								<md-optgroup>
-									<!-- <md-option ng-value="{{displayDoc.data.category}}" selected>{{displayDoc.data.category}}</md-option> -->
+									<md-option value="{{displayDoc.data.category}}" selected>{{displayDoc.data.category}}</md-option>
 								</md-optgroup>
 
 								<md-optgroup label="Account & Bookkeeping">
@@ -86,33 +86,37 @@
 						<md-input-container>
 							<label>Classification</label>
 							<md-select ng-model="class">
-
 								<!-- Selected Classification -->
 								<md-optgroup>
-									<md-option ng-value="{{displayDoc.data.classification}}" selected>{{displayDoc.data.classification}}
-									</md-option>
 
-								<md-option ng-value="class.name" ng-repeat="class in jobClass">{{class.name}}</md-option>
+									<md-option value="{{displayDoc.data.classification}}" selected>{{displayDoc.data.classification}}
+									</md-option>
+									<md-option ng-value="class.name" ng-repeat="class in jobClass">{{class.name}}</md-option>
+
 								</md-optgroup>
 							</md-select>
 						</md-input-container>
 						<!-- Outsourcing Model -->
 						<md-input-container>
 							<label>Outsourcing Model</label>
-							<md-select ng-model="O_model">
+							<md-select ng-model="outSModel">
+								<md-optgroup>
 
-								<!-- <md-option ng-value="{{displayDoc.data.out_sourcing_model}}" selected>{{displayDoc.data.out_sourcing_model}}</md-option> -->
+									<md-option value="{{displayDoc.data.out_sourcing_model}}" selected>{{displayDoc.data.out_sourcing_model}}</md-option>
 
+									<md-option ng-value="O_model.name" ng-repeat="O_model in OModel">{{O_model.name}}</md-option>
 
-								<md-option ng-value="O_model.name" ng-repeat="O_model in OModel">{{O_model.name}}</md-option>
+								</md-optgroup>
 							</md-select>	
 						</md-input-container>
 						<!-- Company -->
 						<md-input-container>
 							<label>Company</label>
 							<md-select ng-model="comp">
-								<md-option ng-value="{{displayDoc.data.company}}" selected>{{displayDoc.data.company}}</md-option>
-								<md-option ng-value="comp.name" ng-repeat="comp in jobComp">{{comp.name}}</md-option>
+								<md-optgroup>
+									<md-option value="{{displayDoc.data.company}}" selected>{{displayDoc.data.company}}</md-option>
+									<md-option ng-value="comp.name" ng-repeat="comp in jobComp">{{comp.name}}</md-option>
+								<md-optgroup>
 							</md-select>
 						</md-input-container>
 						<!-- Heading -->
@@ -124,7 +128,7 @@
 						<md-input-container>
 							<label>Status</label>
 							<md-select name="type" ng-model="jStat">
-								<md-option ng-value="{{displayDoc.data.status}}" aria-label>{{displayDoc.data.status}}</md-option>
+								<md-option value="{{displayDoc.data.status}}" aria-label selected>{{displayDoc.data.status}}</md-option>
 								<md-option ng-value="jStat.name" ng-repeat="jStat in jobStatus">{{jStat.name}}</md-option>
 							</md-select>
 						</md-input-container>
@@ -132,7 +136,7 @@
 						<md-input-container>
 							<label>Show Status</label>
 							<md-select name="type" ng-model="jShowStat">
-								<md-option ng-value="{{displayDoc.data.classification}}" aria-label>{{displayDoc.data.show_status}}</md-option>
+								<md-option value="{{displayDoc.data.show_status}}" aria-label selected>{{displayDoc.data.show_status}}</md-option>
 								<md-option ng-value="jShowStat.name" ng-repeat="jShowStat in jobShowStatus" aria-label>{{ jShowStat.name }}</md-option>
 							</md-select>
 						</md-input-container>
@@ -160,7 +164,7 @@
 						<md-input-container>
 							<label>Level</label>
 							<md-select ng-model="JO_level" >
-								<md-option ng-value="{{displayDoc.data.level}}" selected>{{displayDoc.data.level}}</md-option>
+								<md-option value="{{displayDoc.data.level}}" selected>{{displayDoc.data.level}}</md-option>
 								<md-option ng-value="level.name" ng-repeat="level in job_order_level">{{level.name}}</md-option>
 							</md-select>
 						</md-input-container>
@@ -169,7 +173,7 @@
 						<md-input-container>
 							<label>Working Status</label>
 							<md-select ng-model="JO_work_stat" >
-								<!-- <md-option ng-value="{{displayDoc.data.working_status}}" selected>{{displayDoc.data.working_status}}</md-option> -->
+								<md-option value="{{displayDoc.data.working_status}}" selected>{{displayDoc.data.working_status}}</md-option>
 								<md-option ng-value="wStat.name" ng-repeat="wStat in work_status">{{wStat.name}}</md-option>
 							</md-select>
 						</md-input-container>
@@ -178,7 +182,7 @@
 						<md-input-container>
 							<label>TimeZone</label>
 							<md-select ng-model="timezone" >
-								<md-option ng-value="{{displayDoc.data.working_time_zone}}" selected>{{displayDoc.data.working_time_zone}}</md-option>
+								<md-option value="{{displayDoc.data.working_time_zone}}" selected>{{displayDoc.data.working_time_zone}}</md-option>
 								<md-option ng-value="TimeZ.name" ng-repeat="TimeZ in working_time_zone">{{TimeZ.name}}</md-option>
 							</md-select>
 						</md-input-container>
@@ -187,7 +191,7 @@
 						<md-input-container>
 							<label>Work Starts at</label>
 							<md-select ng-model="work_start" >
-								<md-option ng-value="{{displayDoc.data.working_start_time}}" selected>{{displayDoc.data.working_start_time}}</md-option>
+								<md-option value="{{displayDoc.data.working_start_time}}" selected>{{displayDoc.data.working_start_time}}</md-option>
 								<md-option ng-value="wStart.name" ng-repeat="wStart in working_start_time">{{wStart.name}}</md-option>
 							</md-select>
 						</md-input-container>
@@ -196,7 +200,7 @@
 						<md-input-container>
 							<label>Work Ends at</label>
 							<md-select ng-model="work_end" >
-								<md-option ng-value="{{displayDoc.data.working_end_time}}" selected>{{displayDoc.data.working_end_time}}</md-option>
+								<md-option value="{{displayDoc.data.working_end_time}}" selected>{{displayDoc.data.working_end_time}}</md-option>
 								<md-option ng-value="wEnd.name" ng-repeat="wEnd in working_end_time">{{wEnd.name}}</md-option>
 							</md-select>
 						</md-input-container>
@@ -216,7 +220,7 @@
 					<div layout="column" flex>
 
 						<!-- Displays Current Requirements -->
-						<div ng-repeat="dispReq in displayDoc.data.required_skills" layout="row" class="disCurReq" layout-align="center center">
+						<div ng-repeat="dispReq in displayDoc.data.requirement_must_have" layout="row" class="disCurReq" layout-align="center center">
 							<md-input-container flex="100" md-no-float class="md-block">
 								<input type="text" placeholder="Input Requirements" value="{{dispReq}}" />
 							</md-input-container>
@@ -377,7 +381,7 @@
 				<div layout="column" flex>
 
 						<!-- Displays Current Resquirement Skills -->
-						<div ng-repeat="x in displayDoc.data.required_skills" class="disCurRes" layout="row" layout-align="center center">
+						<div ng-repeat="x in displayDoc.data.required_skills" class="disCurReq" layout="row" layout-align="center center">
 							<md-input-container flex="100" md-no-float class="md-block">
 								<input type="text" name="quest" placeholder="Input Responsibilities" value="{{x}}" />
 							</md-input-container>
@@ -502,15 +506,114 @@
 				</md-card-content>
 			</md-card>
  -->
+
+				<!-- Other Related Job -->
+				<md-card id="hisAd">
+					<md-card-title>
+						<md-card-title-text layout-align="center center">
+							<span class="md-headline">Other Related Job Information</span>
+						</md-card-title-text>
+					</md-card-title>
+					<md-card-content>
+						<div layout="column">
+							<md-input-container>
+								<p>Enter atleast three questions so we can help you find potential staff :</p>
+							</md-input-container>
+
+							<md-input-container>
+								<input type="text" ng-model="question1" placeholder="1st question" >
+							</md-input-container>	
+
+							<md-input-container>
+								<input type="text" ng-model="question2" placeholder="2nd question" >
+							</md-input-container>	
+
+							<md-input-container>
+								<input type="text" ng-model="question3" placeholder="3rd question" >
+							</md-input-container>
+
+							<!-- <md-divider ng-if="!$last"></md-divider> -->
+
+							<md-input-container>
+								<p>Will you provide training to the staff?</p>
+								<md-radio-group ng-model="training" >
+									<md-radio-button value="Yes" class="md-primary">Yes</md-radio-button>
+									<md-radio-button value="No">No</md-radio-button>
+								</md-radio-group>
+							</md-input-container>							
+
+							<md-input-container>
+								<p>Will the staff need to make calls?</p>
+								<md-radio-group ng-model="calls" >
+									<md-radio-button value="Yes" class="md-primary">Yes</md-radio-button>
+									<md-radio-button value="No">No</md-radio-button>
+								</md-radio-group>
+							</md-input-container>							
+
+							<md-input-container>
+								<p>Is this the first time you are hiring a staff for this position?</p>
+								<md-radio-group ng-model="first_time_hiring" >
+									<md-radio-button value="Yes" class="md-primary">Yes</md-radio-button>
+									<md-radio-button value="No">No</md-radio-button>
+								</md-radio-group>
+							</md-input-container>					
+
+						</div>
+					</md-card-content>
+				</md-card>
+
+				<!-- Manager Info -->
+				<md-card id="hisAd">
+					<md-card-title>
+						<md-card-title-text layout-align="center center">
+							<span class="md-headline">Manager Information</span>
+						</md-card-title-text>
+					</md-card-title>
+					<md-card-content>
+						<div layout="column">
+
+							<md-input-container>
+								<p>Will the staff report directy to you?</p>
+								<md-radio-group ng-model="report_to_you" >
+									<md-radio-button value="Yes" class="md-primary">Yes</md-radio-button>
+									<md-radio-button value="No">No</md-radio-button>
+								</md-radio-group>
+							</md-input-container>
+
+							<!-- FirstName  -->
+							<md-input-container>
+								<label>Full Name</label>
+								<input type="text" ng-model="mngr_fullName" value=" displayDoc.data.manager_info.name">
+							</md-input-container>
+
+							<!-- Email Address  -->
+							<md-input-container>
+								<label>Email Address</label>
+								<input type="email" ng-model="mngr_email" >
+							</md-input-container> 
+
+							<!-- Contact Number -->
+							<md-input-container>
+								<label>Contact No.</label>
+								<input type="number" ng-model="mngr_contact" >
+							</md-input-container>  
+
+						</div>
+					</md-card-content>
+				</md-card>
+
 		
 			<!-- Action Button -->
 			<md-card-content>
 				<md-card-actions layout="row" layout-align=" center">
-					<md-button ng-click="submitForm()" class="md-raised md-default">Cancel</md-button>
-					<md-button ng-click="submitForm()" class="md-raised md-warn">Update Job Ads</md-button>
+					<md-button type="button" class="md-raised md-default">Cancel</md-button>
+					<md-button type="submit" class="md-raised md-warn">Update Job Ads</md-button>
 				</md-card-actions>
 			</md-card-content>
 		</form>
 	</div>
 
 </div>
+
+
+<!-- will_you_provide_training -->

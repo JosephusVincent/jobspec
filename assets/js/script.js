@@ -903,6 +903,14 @@
 
     // Populate Chossen Document into Edit Fields
     $scope.displayDoc = SelectedData;
+    $scope.upd_job_title = $scope.displayDoc.data.ad_job_or_title;
+    $scope.QA = $scope.displayDoc.data.questions_to_be_asked;
+    $scope.mngr_name = $scope.displayDoc.data.manager_info.name;
+    $scope.mngr_email = $scope.displayDoc.data.manager_info.email;
+    $scope.mngr_contact = $scope.displayDoc.data.manager_info.contact;
+    // console.log(question1);
+
+    // console.log($scope.upd_job_title);
 
     // $scope.outsource_m = $scope.displayDoc.data.out_sourcing_model;
 
@@ -1491,106 +1499,118 @@
 
      
       $scope.updData = {}
+      $scope.updData.manager_info={};
+      $scope.updData.questions_to_be_asked={};
+
       $scope.updateDocForm = function(){
+        //  ------ Responsibilities -------
+        // Add Column Requirements
+        $scope.respCol = $scope.respColumns;
+        // Remove $$hashkey
+        var respon = JSON.stringify( $scope.respCol, function( key, value ) {
+            if( key === "$$hashKey" ) {
+                return undefined;}
+            return value;
+          });
+        $scope.updData.responsibi = respon;
 
 
-      //  ------ Responsibilities -------
-      // Add Column Requirements
-      $scope.respCol = $scope.respColumns;
-      // Remove $$hashkey
-      var respon = JSON.stringify( $scope.respCol, function( key, value ) {
-          if( key === "$$hashKey" ) {
-              return undefined;}
-          return value;
-        });
-      $scope.updData.responsibi = respon;
+        //  ------ Requirements -------
+        // Add Column Requirements
+        $scope.reqCol = $scope.reqColumns;
+        // Remove $$hashkey
+        var req = JSON.stringify( $scope.reqCol, function( key, value ) {
+            if( key === "$$hashKey" ) {
+                return undefined;}
+            return value;
+          });
+        $scope.updData.requirements = req;
+
+        //  ------ Requirements Must Have -------
+        // Add Column Requirements
+        $scope.reqMHCol = $scope.reqMHColumns;
+        // Remove $$hashkey
+        var reqMH = JSON.stringify( $scope.reqMHCol, function( key, value ) {
+            if( key === "$$hashKey" ) {
+                return undefined;}
+            return value;
+          });
+        $scope.updData.requirements_must_have = reqMH;
+
+        //  ------ Requirements Good to Have -------
+        // Add Column Requirements
+        $scope.reqGTHCol = $scope.reqGTHColumns;
+        // Remove $$hashkey
+        var reqGTH = JSON.stringify( $scope.reqGTHCol, function( key, value ) {
+            if( key === "$$hashKey" ) {
+                return undefined;}
+            return value;
+          });
+        $scope.updData.requirements_good_to_have = reqGTH;
+
+        //  ------ Requirements Tasks -------
+        // Add Column Requirements
+        $scope.reqTaskCol = $scope.reqTaskColumns;
+        // Remove $$hashkey
+        var reqTask = JSON.stringify( $scope.reqTaskCol, function( key, value ) {
+            if( key === "$$hashKey" ) {
+                return undefined;}
+            return value;
+          });
+        $scope.updData.requirements_task = reqTask;
+
+        //  ------ Requirement Skills -------
+        // Add Column Requirements
+        $scope.reqSkillCol = $scope.reqSkillColumns;
+        // Remove $$hashkey
+        var reqSkill = JSON.stringify( $scope.reqSkillCol, function( key, value ) {
+            if( key === "$$hashKey" ) {
+                return undefined;}
+            return value;
+          });
+        $scope.updData.requirements_skills = reqSkill;
+
+        //  ------ Duties & Responsibilities -------
+        // Add Column Requirements
+        $scope.dutRespCol = $scope.dutRespColumns;
+        // Remove $$hashkey
+        var dutRespon = JSON.stringify( $scope.dutRespCol, function( key, value ) {
+            if( key === "$$hashKey" ) {
+                return undefined;}
+            return value;
+          });
+        $scope.updData.duties_and_responsibilities = dutRespon;
 
 
-      //  ------ Requirements -------
-      // Add Column Requirements
-      $scope.reqCol = $scope.reqColumns;
-      // Remove $$hashkey
-      var req = JSON.stringify( $scope.reqCol, function( key, value ) {
-          if( key === "$$hashKey" ) {
-              return undefined;}
-          return value;
-        });
-      $scope.updData.requirements = req;
+        $scope.updData.upd_job_title = $scope.upd_job_title;
+        $scope.updData.category = $scope.cat;
+        $scope.updData.classification = $scope.class;
+        $scope.updData.outsource_model = $scope.outSModel;
+        $scope.updData.company = $scope.comp;
+        // $scope.updData.heading = $scope.heading;
+        $scope.updData.job_stat = $scope.jStat;
+        $scope.updData.job_show_stat = $scope.jShowStat;
+        // $scope.updData.quantity = $scope.quantity;
+        $scope.updData.job_order_level = $scope.JO_level;
+        $scope.updData.job_order_work_stat = $scope.JO_work_stat;
+        $scope.updData.job_order_working_timezone = $scope.timezone;
+        $scope.updData.job_order_working_start_time = $scope.work_start;
+        $scope.updData.job_order_working_end_time = $scope.work_end;
 
-      //  ------ Requirements Must Have -------
-      // Add Column Requirements
-      $scope.reqMHCol = $scope.reqMHColumns;
-      // Remove $$hashkey
-      var reqMH = JSON.stringify( $scope.reqMHCol, function( key, value ) {
-          if( key === "$$hashKey" ) {
-              return undefined;}
-          return value;
-        });
-      $scope.updData.requirements_must_have = reqMH;
+        $scope.updData.questions_to_be_asked.first = $scope.question1;
+        $scope.updData.questions_to_be_asked.second = $scope.question2;
+        $scope.updData.questions_to_be_asked.third = $scope.question3;
+        $scope.updData.will_you_provide_training = $scope.training;
+        $scope.updData.will_the_staff_make_calls = $scope.calls;
+        $scope.updData.is_this_your_first_staff_hire_for_the_job_role = $scope.first_time_hiring;
+        $scope.updData.will_the_staff_report_directly_to_you = $scope.report_to_you;
+        $scope.updData.manager_info.name = $scope.mngr_name;
+        $scope.updData.manager_info.email = $scope.mngr_email;
+        $scope.updData.manager_info.contact = $scope.mngr_contact;
 
-      //  ------ Requirements Good to Have -------
-      // Add Column Requirements
-      $scope.reqGTHCol = $scope.reqGTHColumns;
-      // Remove $$hashkey
-      var reqGTH = JSON.stringify( $scope.reqGTHCol, function( key, value ) {
-          if( key === "$$hashKey" ) {
-              return undefined;}
-          return value;
-        });
-      $scope.updData.requirements_good_to_have = reqGTH;
-
-      //  ------ Requirements Tasks -------
-      // Add Column Requirements
-      $scope.reqTaskCol = $scope.reqTaskColumns;
-      // Remove $$hashkey
-      var reqTask = JSON.stringify( $scope.reqTaskCol, function( key, value ) {
-          if( key === "$$hashKey" ) {
-              return undefined;}
-          return value;
-        });
-      $scope.updData.requirements_task = reqTask;
-
-      //  ------ Requirement Skills -------
-      // Add Column Requirements
-      $scope.reqSkillCol = $scope.reqSkillColumns;
-      // Remove $$hashkey
-      var reqSkill = JSON.stringify( $scope.reqSkillCol, function( key, value ) {
-          if( key === "$$hashKey" ) {
-              return undefined;}
-          return value;
-        });
-      $scope.updData.requirements_skills = reqSkill;
-
-      //  ------ Duties & Responsibilities -------
-      // Add Column Requirements
-      $scope.dutRespCol = $scope.dutRespColumns;
-      // Remove $$hashkey
-      var dutRespon = JSON.stringify( $scope.dutRespCol, function( key, value ) {
-          if( key === "$$hashKey" ) {
-              return undefined;}
-          return value;
-        });
-      $scope.updData.duties_and_responsibilities = dutRespon;
-
-
-      // $scope.updData.upd_job_title = $scope.upd_job_title;
-      $scope.updData.category = $scope.cat;
-      $scope.updData.classification = $scope.class;
-      $scope.updData.outsource_model = $scope.outSModel;
-      $scope.updData.company = $scope.comp;
-      // $scope.updData.heading = $scope.heading;
-      $scope.updData.job_stat = $scope.jStat;
-      $scope.updData.job_show_stat = $scope.jShowStat;
-      // $scope.updData.quantity = $scope.quantity;
-      $scope.updData.job_order_level = $scope.JO_level;
-      $scope.updData.job_order_work_stat = $scope.JO_work_stat;
-      $scope.updData.job_order_working_timezone = $scope.timezone;
-      $scope.updData.job_order_working_start_time = $scope.work_start;
-      $scope.updData.job_order_working_end_time = $scope.work_end;
-
-      // console.log("updatedDocForm Works !!!");
-      console.log($scope.updData);
-      };
+        // console.log("updatedDocForm Works !!!");
+        console.log($scope.updData);
+        };
 
     });
 
@@ -1980,35 +2000,41 @@
 
 //----- Final Working Storing & Adding/Removing  Column ------
 
-// app.controller('SampleCtrl', function($scope) {
-//  $scope.columns = [{name:}];
+app.controller('SampleCtrl', function($scope) {
+ // $scope.columns = [{name:""}];
 
-//   $scope.addNewReqColumn = function() {
-//     var newItemNo = $scope.columns.length+1;
-//     $scope.columns.push({});
-//   };
+ //  $scope.addNewReqColumn = function() {
+ //    var newItemNo = $scope.columns.length+1;
+ //    $scope.columns.push({});
+ //  };
 
-//   $scope.removeReqColumn = function(index) {
-//     // remove the row specified in index
-//     $scope.columns.splice( index, 1);
+ //  $scope.removeReqColumn = function(index) {
+ //    // remove the row specified in index
+ //    $scope.columns.splice( index, 1);
   
-//   };
+ //  };
 
-//   $scope.dataCol = {}
-//   $scope.getAllData = function() {
-//       $scope.dataCol.requirements = $scope.columns;
+ //  $scope.dataCol = {}
+ //  $scope.getAllData = function() {
+ //      $scope.dataCol.requirements = $scope.columns;
       
-//       // Remove $$hashkey
-//      var  json = JSON.stringify( $scope.dataCol, function( key, value ) {
-//           if( key === "$$hashKey" ) {
-//               return undefined;
-//           }
-//           return value;
-//       });
-//       // console.log(json);
-//       console.log(json);
-//   };
-// });
+ //      // Remove $$hashkey
+ //     var  json = JSON.stringify( $scope.dataCol, function( key, value ) {
+ //          if( key === "$$hashKey" ) {
+ //              return undefined;
+ //          }
+ //          return value;
+ //      });
+ //      // console.log(json);
+ //      console.log(json);
+ //  };
+
+$scope.model.campuses = [{}]; // initialise the array with an empty object
+function addCampus(){ 
+  // push an empty object onto the array
+  $scope.model.campuses.push({});
+}
+});
 
 
 

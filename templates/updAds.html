@@ -11,7 +11,7 @@
 			<md-card id="jobAd">
 				<md-card-title>
 					<md-card-title-text>
-						<span class="md-headline">Job Ad Information ID => {{displayDoc.data._id}}</span>       
+						<span class="md-headline">Job Ad Information </span>       
 					</md-card-title-text>
 				</md-card-title>  
 				<md-card-content >
@@ -19,7 +19,7 @@
 						<!-- Ad Title -->
 						<md-input-container>
 							<label>Ad Title </label>
-							<input type="text" ng-value="{{displayDoc.data.ad_job_or_title}}" ng-model="upd_job_title">
+							<input type="text" ng-model="upd_job_title">
 						</md-input-container>
 						<!-- Leads -->
 						<md-input-container>
@@ -220,7 +220,7 @@
 					<div layout="column" flex>
 
 						<!-- Displays Current Requirements -->
-						<div ng-repeat="dispReq in displayDoc.data.requirement_must_have" layout="row" class="disCurReq" layout-align="center center">
+						<div ng-repeat="dispReq in displayDoc.data.requirements" layout="row" class="disCurReq" layout-align="center center">
 							<md-input-container flex="100" md-no-float class="md-block">
 								<input type="text" placeholder="Input Requirements" value="{{dispReq}}" />
 							</md-input-container>
@@ -262,7 +262,7 @@
 				<div layout="column" flex>
 
 						<!-- Displays Current Requirements -->
-						<div ng-repeat="dispReq in displayDoc.data.requirement_must_have" layout="row" class="disCurReq" layout-align="center center">
+						<div ng-repeat="dispReq in displayDoc.data.requirements_must_have" layout="row" class="disCurReq" layout-align="center center">
 							<md-input-container flex="100" md-no-float class="md-block">
 								<input type="text" placeholder="Input Requirements" value="{{dispReq}}" />
 							</md-input-container>
@@ -302,7 +302,7 @@
 				<div layout="column" flex>
 
 						<!-- Displays Current Requirements -->
-						<div ng-repeat="dispReq in displayDoc.data.requirement_good_to_have" layout="row" class="disCurReq" layout-align="center center">
+						<div ng-repeat="dispReq in displayDoc.data.requirements_good_to_have" layout="row" class="disCurReq" layout-align="center center">
 							<md-input-container flex="100" md-no-float class="md-block">
 								<input type="text" placeholder="Input Requirements" value="{{dispReq}}" />
 							</md-input-container>
@@ -463,7 +463,7 @@
 				<div layout="column" flex>
 						
 						<!-- Displays Current Duties & Responsibilities -->
-						<div ng-repeat="x in displayDoc.data.duties_and_reponsibilities" class="disCurRes" layout="row" layout-align="center center">
+						<div ng-repeat="x in displayDoc.data.duties_and_responsibilities" class="disCurRes" layout="row" layout-align="center center">
 							<md-input-container flex="100" md-no-float class="md-block">
 								<input type="text" name="quest" placeholder="Input Responsibilities" value="{{x}}" />
 							</md-input-container>
@@ -516,21 +516,15 @@
 					</md-card-title>
 					<md-card-content>
 						<div layout="column">
+
 							<md-input-container>
 								<p>Enter atleast three questions so we can help you find potential staff :</p>
 							</md-input-container>
 
-							<md-input-container>
-								<input type="text" ng-model="question1" placeholder="1st question" >
-							</md-input-container>	
+								<md-input-container ng-repeat="AskQuest in QA">
+									<input type="text" placeholder="Input question" value="{{AskQuest}}">
+								</md-input-container>	
 
-							<md-input-container>
-								<input type="text" ng-model="question2" placeholder="2nd question" >
-							</md-input-container>	
-
-							<md-input-container>
-								<input type="text" ng-model="question3" placeholder="3rd question" >
-							</md-input-container>
 
 							<!-- <md-divider ng-if="!$last"></md-divider> -->
 
@@ -582,8 +576,8 @@
 
 							<!-- FirstName  -->
 							<md-input-container>
-								<label>Full Name</label>
-								<input type="text" ng-model="mngr_fullName" value=" displayDoc.data.manager_info.name">
+								<label>Name</label>
+								<input type="text" ng-model="mngr_name">
 							</md-input-container>
 
 							<!-- Email Address  -->
@@ -595,7 +589,7 @@
 							<!-- Contact Number -->
 							<md-input-container>
 								<label>Contact No.</label>
-								<input type="number" ng-model="mngr_contact" >
+								<input type="text" ng-model="mngr_contact" >
 							</md-input-container>  
 
 						</div>

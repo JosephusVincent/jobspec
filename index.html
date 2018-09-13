@@ -46,16 +46,57 @@
 
 <div ng-view></div>
 
-<!-- <div ng-controller="SampleCtrl" >
-	<form ng-submit="addReqColumn()">
-		<fieldset  ng-repeat="column in columns">
-			<input type="text" name="columnName" ng-model="column.name" name="" placeholder="Column Name" required>
+<div ng-controller="SampleCtrl" >
+	<!-- <form ng-submit="getAllData()"> -->
+	<!-- 	<fieldset  ng-repeat="column in columns">
+			<input type="text" name="columnName" ng-model="column.name" name="column" placeholder="Column Name" required>
 
 			<button class="remove"  ng-click="removeReqColumn($index)">x</button> 
 		</fieldset>
 		<button class="addfields" ng-click="addNewReqColumn()">Add Column</button>
-		<button type="submit">Submit</button>
-	</form>    
+		<button type="submit">Submit</button> -->
+
+
+		<div ng-repeat="item in model.campuses" class="form-group row">
+		  <label>Campus</label> 
+		  <select class="form-control" ng-model="model.campuses[$index]">
+		    <option>Select a campus</option>
+		  </select>
+		</div>
+		<button ng-click="addCampus()">Add another campus</button>
+	<!-- </form>     -->
+
+</div>
+
+
+<!-- 
+
+<div ng-controller="updateInput">
+
+<form ng-submit="updateFields()">
+
+		<select ng-change="updateValue(user, '{{user.id}}')" 
+		ng-model="user.id" ng-options="user.id as user.name for user in users">
+		</select> <br>
+
+
+<select ng-change="updateValue(user, oldValue)"     
+       ng-init="oldValue=0"
+       ng-focus="oldValue=user.id"
+       ng-model="user.id" ng-options="user.id as user.name for user in users">
+</select><br>
+		<input type="text" ng-change="myFunc()" ng-model="myValue"/>
+		<p>The input field has changed {{count}} times.</p>
+		<button type=""></button>
+	</form>
+<select ng-model="selectedOption" 
+        ng-options="value as value.label group by value.name for name in users" 
+        ng-change="onChange()">
+	</select>
+<input type="text" name="quantity" ng-model="viewItemData1.quantity" ng-change="changePrice();">
+	<input id="name" ng-model="val">
+
+
 
 </div> -->
 </div>

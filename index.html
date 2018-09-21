@@ -24,6 +24,7 @@
 		<md-toolbar layout-align="center center" class="md-toolbar md-raised">
 
 			<h3>
+				<md-button class="md-raised md-default" type="button" href="#!/auth">Login</md-button>
 				<md-button class="md-raised md-default" type="button" href="#!/create">Create</md-button>
 				<md-button class="md-raised md-" type="button" href="#/!">View</md-button>
 				<md-button  class="md-raised md-default" type="button" href="#!/archive">Archive</md-button>
@@ -45,16 +46,16 @@
 </div> -->
 
 <div ng-view></div>
-
+<!-- 
 <div ng-controller="SampleCtrl" >
-	<!-- <form ng-submit="getAllData()"> -->
-	<!-- 	<fieldset  ng-repeat="column in columns">
+	<form ng-submit="getAllData()">
+		<fieldset  ng-repeat="column in columns">
 			<input type="text" name="columnName" ng-model="column.name" name="column" placeholder="Column Name" required>
 
 			<button class="remove"  ng-click="removeReqColumn($index)">x</button> 
 		</fieldset>
 		<button class="addfields" ng-click="addNewReqColumn()">Add Column</button>
-		<button type="submit">Submit</button> -->
+		<button type="submit">Submit</button>
 
 
 		<div ng-repeat="item in model.campuses" class="form-group row">
@@ -64,9 +65,9 @@
 		  </select>
 		</div>
 		<button ng-click="addCampus()">Add another campus</button>
-	<!-- </form>     -->
+	</form>
 
-</div>
+</div> -->
 
 
 <!-- 
@@ -95,10 +96,71 @@
 	</select>
 <input type="text" name="quantity" ng-model="viewItemData1.quantity" ng-change="changePrice();">
 	<input id="name" ng-model="val">
-
-
-
 </div> -->
+
+<!-- 
+
+<div ng-controller="PyJWT">
+	<form ng-submit="passData()">
+		<input type="text" placeholder="name" ng-model="email"><br>
+		<input type="password" placeholder="password" ng-model="pwd"><br>
+		<button type="submit">submit</button>
+	</form>
+</div>
+ -->
+ 
+<!-- 
+roselyn@remotestaff.com.ph
+remote1234 
+-->
+<!-- 
+
+
+ Checkbox Sample
+<div ng-controller="checkbox" class="md-padding demo">
+  <div layout="row" layout-wrap>
+    <div flex="100" layout="column">
+      <div>
+      	<form ng-submit="getAllCheckbox">
+        In IE, we cannot apply flex directly to <fieldset>
+          @see https://github.com/philipwalton/flexbugs#9-some-html-elements-cant-be-flex-containers
+        <fieldset class="demo-fieldset" >
+          <legend class="demo-legend">Using &lt;md-checkbox&gt; with the 'indeterminate' attribute </legend>
+          <div layout="row" layout-wrap flex>
+          <div flex-xs flex="50">
+            <md-checkbox aria-label="Select All"
+                         ng-checked="isChecked()"
+                         md-indeterminate="isIndeterminate()"
+                         ng-click="toggleAll()">
+              <span ng-if="isChecked()">Un-</span>Select All
+            </md-checkbox>
+          </div>
+            <div class="demo-select-all-checkboxes" flex="100" ng-repeat="item in items">
+              <md-checkbox ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">
+               {{ item }}
+              </md-checkbox>
+            </div>
+          </div>
+        </fieldset>
+
+        </form>
+      </div>
+    </div>
+</div>
+</div>
+
+
+<br><br><br>
+<div ng-controller="Ctrl1">
+	
+<label ng-repeat="role in roles">
+  <input type="checkbox" checklist-model="user.roles" checklist-value="role"> {{role}}
+</label>
+</div>
+
+ -->
+
+  
 </div>
 
 <!-- Angular Material requires Angular.js Libraries -->

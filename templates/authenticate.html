@@ -1,0 +1,61 @@
+<div id="create">
+	<md-toolbar layout-align="center center" class="md-primary">
+		<h1>Authenticate</h1>
+	</md-toolbar>
+
+	<!-- Create Advertisement Template -->
+	<div id="create_con">
+
+		<form ng-submit="passData()" ng-controller="PyJWT">
+			<md-card id="reqAd">
+				<md-card-title>
+					<md-card-title-text layout-align="center center">
+						<span class="md-headline">Login</span>
+					</md-card-title-text>
+				</md-card-title>
+				<md-card-content>
+					<div layout="column">
+
+						<!-- Email -->
+						<md-input-container>
+							<label>Email</label>
+							<input type="text" ng-model="email">
+						</md-input-container>
+
+						<!-- Password-->
+						<md-input-container>
+							<label>Password</label>
+							<input type="password" ng-model="pwd">
+						</md-input-container>
+
+						<md-card-content>
+							<md-card-actions layout="row" layout-align=" center">
+								<md-button type="submit" class="md-raised md-primary">Submit</md-button>
+							</md-card-actions>
+						</md-card-content>
+
+					</div>
+				</md-card-content>	
+			</md-card>
+		</form>
+
+	</div>
+</div>
+
+<!-- 
+<div id="auth">
+	<h1>Authenticate</h1>
+	<div ng-controller="PyJWT">
+		<form ng-submit="passData()">
+			<input type="text" placeholder="name" ng-model="email"><br>
+			<input type="password" placeholder="password" ng-model="pwd"><br>
+			<button type="submit">submit</button>
+		</form>
+	</div>
+</div> -->
+
+
+<!-- 
+roselyn@remotestaff.com.ph
+remote1234 
+-->

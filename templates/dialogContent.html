@@ -3,7 +3,7 @@
   <form ng-cloak>
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <h2>{{ disDoc.data.ad_job_or_title }}</h2>
+        <h2>{{ SelectedDoc.data.ad_job_or_title }}</h2>
         <span flex></span>
         <md-button class="md-icon-button" ng-click="cancel()">x
           <!-- <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon> -->
@@ -14,44 +14,43 @@
 <!--     <md-dialog-content layout="row" layout-wrap>
       <div class="md-dialog-content" layout="column">
           
-        <p>{{disDoc.data.manager_info}}</p>
- 
+        <p>{{SelectedDoc.data.manager_info}}</p>
       </div>
 
     </md-dialog-content> -->
 <md-dialog-content>
       <div class="md-dialog-content">
       <h4>Job Details:</h4>
-       <p>Working Status : <b>{{disDoc.data.working_status}}</b></p>
-       <p>Level: <b>{{disDoc.data.level}}</b></p>
-       <p>Work Schedule: <b>{{disDoc.data.working_time_zone}} {{disDoc.data.working_start_time}} - {{disDoc.data.working_end_time}}</b></p>
-       <p>Work Location: <b>{{disDoc.data.out_sourcing_model}}</b></p>
-       <p>No. of staff needed: <b>{{disDoc.data.quantity}}</b></p>
+       <p>Working Status : <b>{{SelectedDoc.data.working_status}}</b></p>
+       <p>Level: <b>{{SelectedDoc.data.level}}</b></p>
+       <p>Work Schedule: <b>{{SelectedDoc.data.working_time_zone}} {{SelectedDoc.data.working_start_time}} - {{SelectedDoc.data.working_end_time}}</b></p>
+       <p>Work Location: <b>{{SelectedDoc.data.out_sourcing_model}}</b></p>
+       <p>No. of staff needed: <b>{{SelectedDoc.data.quantity}}</b></p>
       </div>
 
       <md-divider id="cusDivider" ng-if="!$last"></md-divider>
 
       <div class="md-dialog-content">
-        <p>Job Summary:</p>
-        <p>{{disDoc.data.job_summary}}</p>
+        <p>Job Summary: ID => {{SelectedDoc.data._id}}</p>
+        <p>{{SelectedDoc.data.job_summary}}</p>
 
         <h4>Resposibilities</h4>
-        <p ng-repeat="resData in disDoc.data.responsibilities">{{ resData }}</p>
+        <p ng-repeat="resData in SelectedDoc.data.responsibilities">{{ resData }}</p>
 
         <h5>Must to have</h5>
-        <ul ng-repeat="mustHave in disDoc.data.requirement_must_have">
+        <ul ng-repeat="mustHave in SelectedDoc.data.requirement_must_have">
           <li>{{ mustHave }}</li>
         </ul>
 
         <h5>Good to have</h5>
-        <ul ng-repeat="goodHave in disDoc.data.requirement_good_to_have">
+        <ul ng-repeat="goodHave in SelectedDoc.data.requirement_good_to_have">
           <li>{{ goodHave }}</li>
         </ul>
         
       </div>
     </md-dialog-content>
     <md-dialog-actions layout="row">
-        <md-button class="md-warn md-raised" href="#!/upd_jobspecs" ng-click="answer('not useful')">
+        <md-button class="md-warn md-raised" href="#!/updateAds/{{SelectedDoc.data._id}}" ng-click="answer('answer')">
           Edit
         </md-button>
         <span flex></span>
